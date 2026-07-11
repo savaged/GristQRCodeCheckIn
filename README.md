@@ -1,4 +1,4 @@
-Here's a C# console app that reads a UUID from the barcode scanner (which behaves like a keyboard), looks up the matching row in your Grist table via the API, and flips the correct day's boolean column to true.
+A prototype C# console app that reads a UUID from the barcode scanner (which behaves like a keyboard), looks up the matching row in your Grist table via the API, and flips the correct day's boolean column to true.
 
 ## Assumptions
 The Grist table has a text column (e.g. UUID) holding the same UUID that's encoded in the QR code
