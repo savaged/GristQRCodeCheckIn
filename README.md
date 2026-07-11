@@ -22,4 +22,4 @@ A couple of practical notes for the event:
 
 If you'll have more than one scanning station, each just needs this same app pointed at the same doc — Grist handles concurrent writes fine for this volume.
 Right now a failed lookup (bad/unregistered UUID) just prints an error and loops — you may want to log rejected scans to a file so staff can follow up on anyone whose badge didn't work.
-If you want a running total of check-ins per day printed at the desk, that's an easy addition (just tally successful check-ins in the loop) — happy to add it if useful.
+If you want a running total of check-ins per day printed at the desk, that's an easy addition (just tally successful check-ins in the loop).
