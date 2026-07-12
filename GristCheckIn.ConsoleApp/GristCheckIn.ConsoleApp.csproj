@@ -5,13 +5,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>GristCheckIn.ConsoleApp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-      <Using Include="System.Net.Http.Headers"/>
-      <Using Include="System.Net.Http.Json"/>
-      <Using Include="System.Text.Json"/>
-      <Using Include="System.Text.Json.Serialization"/>
+    <ProjectReference Include="..\GristCheckIn.Core\GristCheckIn.Core.csproj" />
   </ItemGroup>
 
 </Project>

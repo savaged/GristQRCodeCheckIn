@@ -1,4 +1,13 @@
-class GristClient
+using GristCheckIn.Core.Configuration;
+
+namespace GristCheckIn.Core.Grist;
+
+/// <summary>
+/// Talks to the Grist REST API. This class's only job is translating
+/// between HTTP/JSON and the plain GristRecord model - it doesn't know
+/// anything about check-in days, volunteer names, or how it's presented.
+/// </summary>
+public class GristClient : IGristClient
 {
     private readonly HttpClient _http;
     private readonly GristConfig _config;
@@ -10,11 +19,6 @@ class GristClient
         _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", config.ApiKey);
     }
 
-    /// <summary>
-    /// Looks up a single record by matching the UUID column.
-    /// Uses Grist's ?filter= query param, which takes a JSON object
-    /// mapping column name -> array of accepted values.
-    /// </summary>
     public async Task<GristRecord?> FindRecordByUuidAsync(string uuid)
     {
         var filter = JsonSerializer.Serialize(new Dictionary<string, string[]>
@@ -35,10 +39,7 @@ class GristClient
         return new GristRecord { Id = match.Id, Fields = match.Fields ?? new() };
     }
 
-    /// <summary>
-    /// Sets a single boolean field on a record via PATCH.
-    /// </summary>
-    public async Task SetBoolFieldAsync(int recordId, string columnName, bool value)
+    public async Task SetFieldAsync(int recordId, string columnName, object value)
     {
         var body = new
         {
@@ -65,13 +66,13 @@ class GristClient
 
     // --- DTOs matching Grist's /records response shape ---
 
-    class RecordsResponse
+    private class RecordsResponse
     {
         [JsonPropertyName("records")]
         public List<RecordDto>? Records { get; set; }
     }
 
-    class RecordDto
+    private class RecordDto
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
