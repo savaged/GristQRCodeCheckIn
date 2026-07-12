@@ -434,3 +434,6 @@ FodyWeavers.xsd
 # Vim swap files
 *.swp
 
+# Test data
+TestData.txt
+
