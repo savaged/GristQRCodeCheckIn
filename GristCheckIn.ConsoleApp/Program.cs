@@ -14,9 +14,9 @@ var config = GristConfig.FromEnvironment();
 // Update these column names to match your actual Grist table.
 var dayColumns = new Dictionary<DayOfWeek, string>
 {
-    [DayOfWeek.Friday] = "Signed in Friday",
-    [DayOfWeek.Saturday] = "Signed in Saturday",
-    [DayOfWeek.Sunday] = "Signed in Sunday",
+    [DayOfWeek.Friday] = "Signed_In_Friday",
+    [DayOfWeek.Saturday] = "Signed_In_Saturday",
+    [DayOfWeek.Sunday] = "Signed_In_Sunday",
 };
 
 IGristClient gristClient = new GristClient(config);

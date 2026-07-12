@@ -22,9 +22,9 @@ public partial class GristConfig
     /// <summary>Column that stores the UUID encoded in the QR code (Text type).</summary>
     public string UuidColumn { get; set; } = "UUID";
 
-    public string FirstNameColumn { get; set; } = "First Name";
+    public string FirstNameColumn { get; set; } = "First_Name";
 
-    public string LastNameColumn { get; set; } = "Last Name";
+    public string LastNameColumn { get; set; } = "Last_Name";
 
     /// <summary>
     /// Builds a config from environment variables, falling back to the
