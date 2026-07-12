@@ -1,4 +1,7 @@
+# Grist Volunteer Check-In Scanner
+
 A prototype C# console app that reads a UUID from the barcode scanner (which behaves like a keyboard), looks up the matching row in your Grist table via the API, and flips the correct day's boolean column to true.
+Reads a volunteer UUID scanned from a QR-code badge (barcode scanners act as HID keyboards, so the scanned value + Enter arrives just like typed input) and marks that volunteer as checked-in for the current day by setting a boolean column via the Grist REST API.
 
 ## Assumptions
 The Grist table has a text column (e.g. UUID) holding the same UUID that's encoded in the QR code
