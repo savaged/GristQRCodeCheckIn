@@ -47,6 +47,8 @@ GristCheckIn.ConsoleApp/      Console front-end
 
 ## Configuration
 
+### Option 1
+
 Settings are read from environment variables via `GristConfig.FromEnvironment()`, falling back to defaults in `GristConfig.cs` if unset.
 
 | Variable | Description | Default |
@@ -56,10 +58,10 @@ Settings are read from environment variables via `GristConfig.FromEnvironment()`
 | `GRIST_TABLE_ID` | Table name as shown on the "Raw Data" page | `Volunteers` |
 | `GRIST_API_KEY` | Your Grist API key | *(placeholder — must be set)* |
 | `GRIST_UUID_COLUMN` | Column holding each volunteer's UUID | `UUID` |
-| `GRIST_FIRSTNAME_COLUMN` | Column holding first name | `First Name` |
-| `GRIST_LASTNAME_COLUMN` | Column holding last name | `Last Name` |
+| `GRIST_FIRSTNAME_COLUMN` | Column holding first name | `First_Name` |
+| `GRIST_LASTNAME_COLUMN` | Column holding last name | `Last_Name` |
 
-The three day-to-column mappings (currently `Signed in Friday` / `Saturday` / `Sunday`) are set directly in `GristCheckIn.ConsoleApp/Program.cs` — update these to match your table's actual column names.
+The three day-to-column mappings (currently `Signed_In_Friday` / `Saturday` / `Sunday`) are set directly in `GristCheckIn.ConsoleApp/Program.cs` — update these to match your table's actual column names.
 
 On Windows (PowerShell):
 
@@ -74,6 +76,11 @@ On macOS/Linux:
 export GRIST_DOC_ID="your-doc-id"
 export GRIST_API_KEY="your-api-key"
 ```
+
+### Option 2
+
+Use a partial to set the configuration fields. The partial should be ignored by git.
+No environment variables will be required for this option. Thus, an easier deployment.
 
 ## Running
 
