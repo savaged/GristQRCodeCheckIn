@@ -437,3 +437,6 @@ FodyWeavers.xsd
 # Test data
 TestData.txt
 
+# AI prompt
+Prompt.txt
+
