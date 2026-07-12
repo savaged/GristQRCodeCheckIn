@@ -45,12 +45,12 @@ partial class GristConfig
  */
 partial class GristConfig
 {
-    public required string ServerUrl { get; init; }
-    public required string DocId { get; init; }
-    public required string TableId { get; init; }
-    public required string ApiKey { get; init; }
-    public required string UuidColumn { get; init; }
-    public required string FirstnameColumn { get; init; }
-    public required string SurnameColumn { get; init; }
+    public string ServerUrl { get; set; }
+    public string DocId { get; set; }
+    public string TableId { get; set; }
+    public string ApiKey { get; set; }
+    public string UuidColumn { get; set; }
+    public string FirstnameColumn { get; set; }
+    public string SurnameColumn { get; set; }
 }
 

@@ -430,3 +430,7 @@ FodyWeavers.xsd
 
 # Partials
 *.partial.cs
+
+# Vim swap files
+*.swp
+
