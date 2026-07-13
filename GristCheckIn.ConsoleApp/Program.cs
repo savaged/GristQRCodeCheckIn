@@ -65,6 +65,5 @@ static void Print(CheckInResult result)
             Console.WriteLine($"  ✗ Error: {result.Message}");
             break;
     }
-
     Console.ResetColor();
 }
