@@ -6,17 +6,22 @@ namespace GristCheckIn.Core.Grist;
 /// Talks to the Grist REST API. This class's only job is translating
 /// between HTTP/JSON and the plain GristRecord model - it doesn't know
 /// anything about check-in days, volunteer names, or how it's presented.
+///
+/// Registered as a typed client via AddHttpClient (see ServiceCollectionExtensions),
+/// so the HttpClient itself - including its BaseAddress and auth header - is
+/// created and configured by IHttpClientFactory, not by this class. That avoids
+/// the socket-exhaustion problems that come from a class newing up its own
+/// long-lived HttpClient, and lets DI manage its lifetime.
 /// </summary>
 public class GristClient : IGristClient
 {
     private readonly HttpClient _http;
     private readonly GristConfig _config;
 
-    public GristClient(GristConfig config)
+    public GristClient(HttpClient httpClient, GristConfig config)
     {
+        _http = httpClient;
         _config = config;
-        _http = new HttpClient { BaseAddress = new Uri(config.ServerUrl) };
-        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", config.ApiKey);
     }
 
     public async Task<GristRecord?> FindRecordByUuidAsync(string uuid)

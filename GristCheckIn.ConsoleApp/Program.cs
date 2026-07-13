@@ -1,12 +1,15 @@
 using GristCheckIn.Core.CheckIn;
 using GristCheckIn.Core.Configuration;
-using GristCheckIn.Core.Grist;
+using GristCheckIn.Core.DependencyInjection;
 using GristCheckIn.ConsoleApp;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 // =========================================================================
-// Composition root: this is the ONLY place concrete classes get new'd up
-// and wired to their interfaces. Everything downstream of this - the check
-// in service, the Grist client - only ever sees the abstractions.
+// Composition root: this is the ONLY place concrete classes get wired to
+// their interfaces. Everything downstream of this - the check-in service,
+// the Grist client - only ever sees the abstractions, resolved via DI.
 // =========================================================================
 
 var config = GristConfig.FromEnvironment();
@@ -14,15 +17,26 @@ var config = GristConfig.FromEnvironment();
 // Update these column names to match your actual Grist table.
 var dayColumns = new Dictionary<DayOfWeek, string>
 {
-    [DayOfWeek.Friday] = "Signed_In_Friday",
-    [DayOfWeek.Saturday] = "Signed_In_Saturday",
-    [DayOfWeek.Sunday] = "Signed_In_Sunday",
+    [DayOfWeek.Friday] = "Signed in Friday",
+    [DayOfWeek.Saturday] = "Signed in Saturday",
+    [DayOfWeek.Sunday] = "Signed in Sunday",
 };
 
-IGristClient gristClient = new GristClient(config);
-IDayColumnResolver dayResolver = new DayColumnResolver(dayColumns);
-IDaySelector daySelector = new ConsoleDaySelector();
-ICheckInService checkInService = new CheckInService(gristClient, config, dayResolver, daySelector);
+using IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureLogging(logging =>
+    {
+        // The default host logs each HttpClient call at Information level,
+        // which would clutter the scan prompt below - keep it to warnings+.
+        logging.SetMinimumLevel(LogLevel.Warning);
+    })
+    .ConfigureServices(services =>
+    {
+        services.AddGristCheckIn(config, dayColumns);
+        services.AddSingleton<IDaySelector, ConsoleDaySelector>();
+    })
+    .Build();
+
+var checkInService = host.Services.GetRequiredService<ICheckInService>();
 
 Console.WriteLine("=========================================");
 Console.WriteLine(" Grist Volunteer Check-In");

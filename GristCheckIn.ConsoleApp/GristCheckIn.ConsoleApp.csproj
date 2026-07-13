@@ -12,4 +12,9 @@
     <ProjectReference Include="..\GristCheckIn.Core\GristCheckIn.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Generic Host: gives us Host.CreateDefaultBuilder for DI, config and logging -->
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+  </ItemGroup>
+
 </Project>
