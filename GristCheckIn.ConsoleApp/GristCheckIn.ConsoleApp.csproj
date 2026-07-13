@@ -6,7 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>GristCheckIn.ConsoleApp</RootNamespace>
+    <ApplicationIcon>hal9000.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="hal9000.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GristCheckIn.Core\GristCheckIn.Core.csproj" />
