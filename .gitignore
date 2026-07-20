@@ -206,8 +206,8 @@ DocProject/Help/*.hhp
 DocProject/Help/Html2
 DocProject/Help/html
 
-# Click-Once directory
-publish/
+# Click-Once or PublishProfile directory
+[Pp]ublish/
 
 # Publish Web Output
 *.[Pp]ublish.xml
