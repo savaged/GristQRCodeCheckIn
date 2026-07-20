@@ -97,6 +97,11 @@ Then scan a badge. The app resolves today's check-in column automatically from t
 - **Multiple scanning stations:** each station just runs its own instance of the console app (or future UI) pointed at the same document; Grist handles concurrent writes fine at this scale.
 - **Logging failed scans:** `CheckInService.CheckInAsync` already returns a `CheckInResult` with a `NotFound`/`Error` status and message — this can be written to a file from the console loop for staff follow-up.
 
-## License
+## Publishing
 
-Add your preferred license here.
+From within the console app folder:
+
+`dotnet publish /p:PublishPrifile=FolderProfile /p:Configuration=Release`
+
+If testing ensure the config partial has the playground Grist Doc Id in a compiler conditional statement.
+
