@@ -208,6 +208,7 @@ DocProject/Help/html
 
 # Click-Once or PublishProfile directory
 [Pp]ublish/
+**/[Pp]ublish/
 
 # Publish Web Output
 *.[Pp]ublish.xml
