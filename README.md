@@ -100,3 +100,8 @@ Then scan a badge. The app resolves today's check-in column automatically from t
 ## License
 
 Add your preferred license here.
+
+## TODO
+
+* Fix bug where user input of wrong day option faults
+
